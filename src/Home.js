@@ -4,12 +4,14 @@ import { StyleSheet, View, Button } from 'react-native';
 /**
  * Home screen
  */
+
 export default class Home extends React.Component {
 
     static navigationOptions = {
         title: 'Home',
     };
-
+   
+    
     render() {
 
         const { navigate } = this.props.navigation;
@@ -20,7 +22,7 @@ export default class Home extends React.Component {
                 <Button
                     title="Go to profile screen"
                     onPress={() => navigate(
-                        'Profile', { name: 'Jane' }
+                        'Profile', { name: "" }
                     )}
                 />
                 

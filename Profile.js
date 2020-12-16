@@ -7,38 +7,36 @@ import { StyleSheet, View, Text, Button } from 'react-native';
 
 export default class Profile extends React.Component {
 
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          data: [],
-         
-        };
-      }
-
     static navigationOptions = ({ navigation }) => {
         return {
             title: navigation.getParam('name'),
         };
     };
-    componentDidMount() {
-        fetch('http://192.168.1.6:9000/emp/10')
-          .then((response) => response.json())
-          .then((json) => {
-            this.setState({ data: json.name });
-          })
-          .catch((error) => console.error(error))
-          .finally(() => {
-            this.setState({ isLoading: false });
-          });
-      }
+    getproFromApi = () => {
+        fetch("https://192.168.1.6:9000/emp/10")
+            .then(response => response.json())
+            .then((responseJson) => {
+                console.log('getting data from fetch', responseJson)
+                setTimeout(() => {
+                    this.setState({
+                        
+                        s: responseJson
+                        
+                    })
+                }, 2000)
+
+            })
+            .catch(error => console.log(error))
+    
+      };
     render() {
-        const { data } = this.state;
+
         const { navigate, state } = this.props.navigation;
         
         return (
             <View style={styles.container}>
-                <Text>{data}</Text>
+
+                <Text>Hello {this.getproFromApi()[0]}</Text>
 
                 <Button
                     title="Go to home screen"
